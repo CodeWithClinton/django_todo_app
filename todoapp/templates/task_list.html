@@ -1,0 +1,55 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<div class="todo-container">
+  <div class="todo-search">
+    <form action="" method="POST">
+     
+      {% comment %} <input type="text" placeholder="Enter Todo" /> {% endcomment %}
+      {% csrf_token %}
+      {{form.title}}
+      <button>Add</button>
+    </form>
+  </div>
+
+  <div class="todo-list">
+    
+    
+    {% for task in tasks %}
+
+    <div class="todo-list-item">
+      <div class="task">
+        <input type="checkbox" />
+        <p>{{task.title}}</p>
+      </div>
+
+      <div class="btn-container">
+        <div class="edit">
+          <a href="{% url 'task-update' task.id %}">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </a>
+        </div>
+        <div class="del">
+          <a href="{% url 'task-delete' task.id %}">
+            <i class="fa-solid fa-trash-can"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+      
+    {% endfor %}
+      
+   
+
+
+
+
+
+   
+
+ 
+  </div>
+</div>
+
+{% endblock content %}
